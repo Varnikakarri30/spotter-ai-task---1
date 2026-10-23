@@ -49,21 +49,21 @@ export const ForecastSlider: React.FC<ForecastSliderProps> = ({
   });
 
   return (
-    <div className="glass-panel rounded-2xl p-4 border border-slate-800 shadow-xl">
+    <div className="bg-white rounded-2xl p-4.5 border border-[#F1E4D8] shadow-sm">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
         <div className="flex items-center space-x-2">
-          <Clock className="w-4 h-4 text-sky-400" />
-          <span className="text-xs font-bold uppercase tracking-wider text-slate-300">
-            Trip Corridor Forecast Slider
+          <Clock className="w-4 h-4 text-[#EA580C]" />
+          <span className="text-xs font-bold uppercase tracking-wider text-[#1F2937]">
+            Corridor Forecast Slider
           </span>
-          <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-sky-500/20 text-sky-400 border border-sky-500/30">
+          <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-[#FFF3E8] text-[#EA580C] border border-[#FDBA74]/60">
             +{hourOffset}h from Departure
           </span>
         </div>
 
-        <div className="text-xs font-medium text-slate-300 bg-slate-900/80 px-3 py-1 rounded-xl border border-slate-700/60 inline-flex items-center space-x-1.5">
-          <span className="text-slate-400">Forecast Time:</span>
-          <span className="text-white font-semibold">{formattedDate}</span>
+        <div className="text-xs font-medium text-[#4B5563] bg-[#FFF9F4] px-3 py-1 rounded-xl border border-[#F1E4D8] inline-flex items-center space-x-1.5">
+          <span className="text-[#6B7280]">Forecast Time:</span>
+          <span className="text-[#1F2937] font-semibold">{formattedDate}</span>
         </div>
       </div>
 
@@ -72,10 +72,10 @@ export const ForecastSlider: React.FC<ForecastSliderProps> = ({
         <button
           type="button"
           onClick={() => setIsPlaying(!isPlaying)}
-          className={`p-2 rounded-xl transition ${
+          className={`p-2 rounded-xl transition cursor-pointer ${
             isPlaying
-              ? 'bg-amber-500 text-slate-950 font-bold'
-              : 'bg-sky-500 hover:bg-sky-400 text-white shadow-md shadow-sky-500/20'
+              ? 'bg-[#EA580C] text-white font-bold shadow-xs'
+              : 'bg-[#F97316] hover:bg-[#EA580C] text-white shadow-sm shadow-orange-500/20'
           }`}
           title={isPlaying ? 'Pause corridor forecast animation' : 'Play 48-hour forecast timeline'}
         >
@@ -88,7 +88,7 @@ export const ForecastSlider: React.FC<ForecastSliderProps> = ({
             setIsPlaying(false);
             onHourOffsetChange(0);
           }}
-          className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 transition border border-slate-700"
+          className="p-2 rounded-xl bg-[#FFF9F4] hover:bg-[#FFF3E8] text-[#4B5563] transition border border-[#F1E4D8] cursor-pointer"
           title="Reset to departure time"
         >
           <RotateCcw className="w-4 h-4" />
@@ -105,15 +105,15 @@ export const ForecastSlider: React.FC<ForecastSliderProps> = ({
               setIsPlaying(false);
               onHourOffsetChange(Number(e.target.value));
             }}
-            className="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-sky-400 focus:outline-none"
+            className="w-full h-2 bg-[#F1E4D8] rounded-lg appearance-none cursor-pointer accent-[#F97316] focus:outline-none"
           />
         </div>
 
-        <span className="text-xs font-mono text-slate-400 w-10 text-right">{hourOffset}h / 48h</span>
+        <span className="text-xs font-mono font-semibold text-[#6B7280] w-12 text-right">{hourOffset}h / 48h</span>
       </div>
 
       {/* Quick Jump Scrub Markers & Heatmap Toggles */}
-      <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-800/80">
+      <div className="flex flex-wrap items-center justify-between gap-2 pt-2.5 border-t border-[#F1E4D8]">
         {/* Quick Hour Jump Buttons */}
         <div className="flex items-center space-x-1">
           {[0, 12, 24, 36, 48].map((h) => (
@@ -124,10 +124,10 @@ export const ForecastSlider: React.FC<ForecastSliderProps> = ({
                 setIsPlaying(false);
                 onHourOffsetChange(h);
               }}
-              className={`text-[10px] px-2 py-0.5 rounded-md border transition ${
+              className={`text-[10px] px-2.5 py-1 rounded-lg border transition cursor-pointer ${
                 hourOffset === h
-                  ? 'bg-sky-500/20 text-sky-300 border-sky-500/40 font-bold'
-                  : 'bg-slate-900/60 text-slate-400 border-slate-800 hover:text-slate-200'
+                  ? 'bg-[#FFF3E8] text-[#EA580C] border-[#FDBA74] font-bold'
+                  : 'bg-[#FFF9F4] text-[#6B7280] border-[#F1E4D8] hover:text-[#1F2937]'
               }`}
             >
               {h === 0 ? 'Dep (0h)' : `+${h}h`}
@@ -140,10 +140,10 @@ export const ForecastSlider: React.FC<ForecastSliderProps> = ({
           <button
             type="button"
             onClick={onToggleHeatmap}
-            className={`flex items-center space-x-1 text-[11px] px-2.5 py-1 rounded-lg border transition ${
+            className={`flex items-center space-x-1 text-[11px] px-2.5 py-1 rounded-lg border transition cursor-pointer ${
               isHeatmapVisible
-                ? 'bg-indigo-500/20 text-indigo-300 border-indigo-500/40 font-semibold'
-                : 'bg-slate-900 text-slate-400 border-slate-800 hover:text-slate-200'
+                ? 'bg-[#FFF3E8] text-[#EA580C] border-[#FDBA74] font-semibold'
+                : 'bg-[#FFF9F4] text-[#6B7280] border-[#F1E4D8] hover:text-[#1F2937]'
             }`}
           >
             <Layers className="w-3.5 h-3.5" />
@@ -151,12 +151,12 @@ export const ForecastSlider: React.FC<ForecastSliderProps> = ({
           </button>
 
           {isHeatmapVisible && (
-            <div className="flex items-center space-x-1 bg-slate-900/80 p-0.5 rounded-lg border border-slate-800">
+            <div className="flex items-center space-x-0.5 bg-[#FFF9F4] p-0.5 rounded-lg border border-[#F1E4D8]">
               <button
                 type="button"
                 onClick={() => onHeatmapMetricChange('risk')}
-                className={`text-[10px] px-2 py-0.5 rounded transition ${
-                  heatmapMetric === 'risk' ? 'bg-sky-500 text-white font-bold' : 'text-slate-400 hover:text-white'
+                className={`text-[10px] px-2.5 py-0.5 rounded-md transition cursor-pointer ${
+                  heatmapMetric === 'risk' ? 'bg-[#F97316] text-white font-bold shadow-xs' : 'text-[#6B7280] hover:text-[#1F2937]'
                 }`}
                 title="Weather Risk Heatmap"
               >
@@ -165,8 +165,8 @@ export const ForecastSlider: React.FC<ForecastSliderProps> = ({
               <button
                 type="button"
                 onClick={() => onHeatmapMetricChange('wind')}
-                className={`text-[10px] px-2 py-0.5 rounded transition ${
-                  heatmapMetric === 'wind' ? 'bg-sky-500 text-white font-bold' : 'text-slate-400 hover:text-white'
+                className={`text-[10px] px-2.5 py-0.5 rounded-md transition cursor-pointer ${
+                  heatmapMetric === 'wind' ? 'bg-[#F97316] text-white font-bold shadow-xs' : 'text-[#6B7280] hover:text-[#1F2937]'
                 }`}
                 title="Wind Speed Heatmap"
               >
@@ -175,8 +175,8 @@ export const ForecastSlider: React.FC<ForecastSliderProps> = ({
               <button
                 type="button"
                 onClick={() => onHeatmapMetricChange('precipitation')}
-                className={`text-[10px] px-2 py-0.5 rounded transition ${
-                  heatmapMetric === 'precipitation' ? 'bg-sky-500 text-white font-bold' : 'text-slate-400 hover:text-white'
+                className={`text-[10px] px-2.5 py-0.5 rounded-md transition cursor-pointer ${
+                  heatmapMetric === 'precipitation' ? 'bg-[#F97316] text-white font-bold shadow-xs' : 'text-[#6B7280] hover:text-[#1F2937]'
                 }`}
                 title="Rain & Snow Heatmap"
               >
